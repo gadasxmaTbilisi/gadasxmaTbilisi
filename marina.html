@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ექთნის მომსახურება თბილისში - Home Health Care Service</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #2c5aa0, #4a90e2);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo h1 {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .phone {
+            background: white;
+            color: #2c5aa0;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .phone:hover {
+            transform: scale(1.05);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44, 90, 160, 0.1), rgba(74, 144, 226, 0.1));
+            padding: 4rem 0;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-text h2 {
+            font-size: 2.5rem;
+            color: #2c5aa0;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .hero-image {
+            text-align: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 4rem 0;
+            background: #f8f9fa;
+        }
+
+        .services h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #2c5aa0;
+            margin-bottom: 3rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .service-card h3 {
+            color: #2c5aa0;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* About Section */
+        .about {
+            padding: 4rem 0;
+        }
+
+        .about-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .about h2 {
+            font-size: 2.5rem;
+            color: #2c5aa0;
+            margin-bottom: 2rem;
+        }
+
+        .about p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, #2c5aa0, #4a90e2);
+            color: white;
+            padding: 4rem 0;
+        }
+
+        .contact-content {
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-info-detailed {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text h2 {
+                font-size: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info-detailed {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .service-card {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .service-card:nth-child(2) { animation-delay: 0.1s; }
+        .service-card:nth-child(3) { animation-delay: 0.2s; }
+        .service-card:nth-child(4) { animation-delay: 0.3s; }
+        .service-card:nth-child(5) { animation-delay: 0.4s; }
+        .service-card:nth-child(6) { animation-delay: 0.5s; }
+
+        /* Call to Action Button */
+        .cta-button {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .cta-button:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>🩺 ექთნის მომსახურება</h1>
+                </div>
+                <div class="contact-info">
+                    <a href="tel:591805108" class="phone">📞 591 80 51 08</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h2>პროფესიონალური ექთნის მომსახურება თბილისში</h2>
+                    <p>🏠 ბინაზე გამოძახებით<br>
+                    📍 გადასხმა / ინფუზია<br>
+                    ⏰ დღის განმავლობაში</p>
+                    <a href="tel:591805108" class="cta-button">დაგვიკავშირდით ახლავე</a>
+                </div>
+                <div class="hero-image">
+        <img src="marina.png" alt="ექთნის მომსახურება" style="width: 100%; height: auto; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services">
+        <div class="container">
+            <h2>🔹 ჩვენი მომსახურებები</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>🍷 ინტოქსიკაციის მკურნალობა</h3>
+                    <p>საკვებისმიერი და ალკოჰოლური ინტოქსიკაციის შემთხვევაში სწრაფი და ეფექტური მკურნალობა ბინაზე გამოძახებით.</p>
+                </div>
+                
+                <div class="service-card">
+                    <h3>🦠 ვირუსული ინფექციები</h3>
+                    <p>ვირუსული ინფექციების მკურნალობა და სიმპტომების შემსუბუქება პროფესიონალური ზრუნვით.</p>
+                </div>
+                
+                <div class="service-card">
+                    <h3>🤢 დიარეა, ფაღარათი, ღებინება</h3>
+                    <p>კუჭ-ნაწლავის ტრაქტის პრობლემების მკურნალობა და სითხის ბალანსის აღდგენა.</p>
+                </div>
+                
+                <div class="service-card">
+                    <h3>💧 სითხის დაკარგვის აღდგენა</h3>
+                    <p>ორგანიზმში სითხის ბალანსის აღდგენა ინტრავენური ინფუზიით.</p>
+                </div>
+                
+                <div class="service-card">
+                    <h3>🩹 ჭრილობის დამუშავება</h3>
+                    <p>ჭრილობების პროფესიონალური დამუშავება და სათანადო მოვლა.</p>
+                </div>
+                
+                <div class="service-card">
+                    <h3>🧵 ნაკერების მოხსნა</h3>
+                    <p>ქირურგული ნაკერების უსაფრთხო და უმტკივნეულო მოხსნა.</p>
+                </div>
+                
+                <div class="service-card">
+                    <h3>🌸 ალერგიული რეაქციები</h3>
+                    <p>ალერგიული რეაქციების სწრაფი და ეფექტური მკურნალობა.</p>
+                </div>
+                
+                <div class="service-card">
+                    <h3>💉 გადასხმა / ინფუზია</h3>
+                    <p>ინტრავენური გადასხმები და ინფუზიები ბინაზე, უსაფრთხო და სტერილურ პირობებში.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <div class="container">
+            <div class="about-content">
+                <h2>💡 ჩვენს შესახებ</h2>
+                <p>ვართ პროფესიონალური ექთნის მომსახურების კომპანია, რომელიც თბილისში მოქმედებს მრავალი წლის განმავლობაში.</p>
+                
+                <p>ჩვენი მიზანია თქვენთვის ხელმისაწვდომი გავხადოთ ყველაზე ხარისხიანი სამედიცინო მომსახურება პირდაპირ თქვენს სახლში.</p>
+                
+                <p><strong>მომსახურება ხელმისაწვდომია დღის განმავლობაში, წინასწარი შეთანხმებით.</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2>📞 დაგვიკავშირდით</h2>
+                <p>მზად ვართ დაგეხმაროთ ნებისმიერ დროს</p>
+                
+                <div class="contact-info-detailed">
+                    <div class="contact-item">
+                        <h3>📱 ტელეფონი</h3>
+                        <p><a href="tel:591805108" style="color: white; text-decoration: none; font-size: 1.2rem; font-weight: bold;">591 80 51 08</a></p>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <h3>📍 მომსახურების ზონა</h3>
+                        <p>თბილისი და მისი შემოგარენი</p>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <h3>⏰ მუშაობის დრო</h3>
+                        <p>დღის განმავლობაში<br>წინასწარი შეთანხმებით</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 ექთნის მომსახურება თბილისში. ყველა უფლება დაცულია.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add fade-in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+
+        // Phone number click tracking (optional analytics)
+        document.querySelectorAll('a[href^="tel:"]').forEach(phone => {
+            phone.addEventListener('click', function() {
+                console.log('Phone number clicked: ' + this.href);
+                // You can add analytics tracking here
+            });
+        });
+    </script>
+</body>
+</html>
