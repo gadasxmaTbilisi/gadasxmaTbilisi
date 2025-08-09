@@ -1,478 +1,376 @@
 <!DOCTYPE html>
 <html lang="ka">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ექთნის მომსახურება თბილისში - Home Health Care Service</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ექსპერტი ექთნის მომსახურება თბილისში — ბინაზე გამოძახებით</title>
+  <meta name="description" content="პროფესიონალი ექთანი თბილისში — გადასხმა/ინფუზია, ჭრილობის დამუშავება, ნაკერების მოხსნა, ინტოქსიკაცია, ვირუსული ინფექციები, ალერგიული რეაქციები. ტელ: +995 591 80 51 08" />
+  <link rel="canonical" href="/" />
+  <meta property="og:title" content="ექთნის მომსახურება თბილისში — ბინაზე გამოძახებით" />
+  <meta property="og:description" content="სწრაფი და უსაფრთხო მომსახურება ბინაზე. დარეკეთ: +995 591 80 51 08" />
+  <meta property="og:image" content="image.png" />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#1f78ff" />
+  <style>
+    :root{
+      --bg:#0b1221;          /* page background (dark navy gradient base) */
+      --bg-2:#0e1a33;
+      --card:#0f1f3f;
+      --primary:#1f78ff;     /* primary blue */
+      --primary-2:#00b4ff;   /* cyan accent */
+      --text:#e7eefc;        /* main text on dark */
+      --muted:#a6b8de;       /* secondary text */
+      --success:#22c55e;     /* success green */
+      --danger:#ef4444;      /* red */
+      --shadow: 0 20px 50px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius-md: 14px;
+      --radius-sm: 10px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      color:var(--text);
+      background: radial-gradient(1200px 600px at 20% -10%, #1a2a52 0%, transparent 60%),
+                  radial-gradient(1200px 600px at 100% 10%, #0b3b7f 0%, transparent 55%),
+                  linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+      line-height:1.65;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    a{color:inherit}
+    img{max-width:100%;display:block}
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-        }
+    /* ===== Utility ===== */
+    .container{width:min(1200px, 92vw);margin-inline:auto}
+    .grid{display:grid;gap:24px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      gap:.6rem;padding:14px 20px;border-radius:999px;text-decoration:none;font-weight:700;
+      background:linear-gradient(135deg,var(--primary),var(--primary-2));
+      color:white; box-shadow: var(--shadow); border:0; cursor:pointer
+    }
+    .btn:hover{transform:translateY(-2px);filter:brightness(1.05)}
+    .btn.outline{background:transparent;border:2px solid rgba(255,255,255,.25)}
+    .tag{display:inline-block;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);padding:6px 12px;border-radius:999px;color:var(--muted);font-size:.9rem}
+    .muted{color:var(--muted)}
+    .shadow{box-shadow:var(--shadow)}
+    .card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);backdrop-filter: blur(10px);border-radius:var(--radius);padding:24px}
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+    /* ===== Header ===== */
+    .skip{position:absolute;left:-9999px}
+    .skip:focus{left:16px;top:16px;background:#000;color:#fff;padding:10px 14px;border-radius:8px;z-index:9999}
 
-        /* Header */
-        header {
-            background: linear-gradient(135deg, #2c5aa0, #4a90e2);
-            color: white;
-            padding: 1rem 0;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
+    header{
+      position:sticky;top:0;z-index:50;backdrop-filter: saturate(150%) blur(10px);
+      background:linear-gradient(180deg, rgba(6,8,15,.8), rgba(6,8,15,.6));
+      border-bottom:1px solid rgba(255,255,255,.08)
+    }
+    .bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand-logo{inline-size:44px;block-size:44px;border-radius:12px;background:linear-gradient(135deg,var(--primary),var(--primary-2));display:grid;place-items:center;box-shadow:var(--shadow)}
+    .brand h1{font-size:1.15rem;margin:0}
+    .cta-group{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+    .phone{background:white;color:#0a2150;padding:10px 16px;border-radius:999px;font-weight:800;text-decoration:none}
+    .viber{background:#7c5cff;color:#fff}
 
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-        }
+    /* ===== Hero ===== */
+    .hero{position:relative;padding: clamp(56px, 7vw, 96px) 0}
+    .hero-wrap{display:grid;grid-template-columns: 1.2fr 1fr;gap:42px;align-items:center}
+    .hero h2{font-size: clamp(1.6rem, 2.8vw, 2.6rem);margin:0 0 12px}
+    .hero p{font-size: clamp(1rem, 1.6vw, 1.15rem);margin:0 0 20px;color:var(--muted)}
+    .hero .highlights{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+    .hero-img{border-radius:var(--radius);overflow:hidden;border:1px solid rgba(255,255,255,.08)}
+    .hero-img img{aspect-ratio: 16/10; object-fit: cover}
 
-        .logo h1 {
-            font-size: 2rem;
-            font-weight: bold;
-        }
+    /* ===== Services ===== */
+    .section{padding: clamp(52px, 7vw, 84px) 0}
+    .section h3{font-size: clamp(1.3rem, 2.2vw, 2rem);margin:0 0 22px}
+    .services{grid-template-columns: repeat(auto-fit, minmax(260px, 1fr))}
+    .service{position:relative;padding:22px;border-radius:var(--radius-md);background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.1)}
+    .service h4{margin:0 0 8px;font-size:1.1rem}
+    .service p{margin:0;color:var(--muted)}
+    .service .icon{inline-size:42px;block-size:42px;border-radius:12px;display:grid;place-items:center;margin-bottom:12px;background:rgba(31,120,255,.15);border:1px solid rgba(31,120,255,.25)}
 
-        .contact-info {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-         .facebook-btn {
-            background: #1877f2;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 25px;
-            font-weight: bold;
-            font-size: 1rem;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+    /* ===== Trust / Safety ===== */
+    .info-banner{display:grid;grid-template-columns:1fr;gap:14px}
+    .alert{display:flex;gap:12px;align-items:flex-start;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);padding:16px;border-radius:var(--radius-sm)}
 
-        .facebook-btn:hover {
-            background: #166fe5;
-            transform: scale(1.05);
-        }
+    /* ===== About ===== */
+    .about p{color:var(--muted)}
 
-        .phone {
-            background: white;
-            color: #2c5aa0;
-            padding: 10px 20px;
-            border-radius: 25px;
-            font-weight: bold;
-            font-size: 1.2rem;
-            text-decoration: none;
-            transition: transform 0.3s ease;
-        }
+    /* ===== FAQ ===== */
+    details{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius-sm);padding:14px}
+    details + details{margin-top:10px}
+    summary{cursor:pointer;font-weight:700}
+    details[open] summary{color:#cfe1ff}
 
-        .phone:hover {
-            transform: scale(1.05);
-        }
+    /* ===== Contact ===== */
+    .contact-grid{grid-template-columns: repeat(auto-fit, minmax(260px,1fr))}
 
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(44, 90, 160, 0.1), rgba(74, 144, 226, 0.1));
-            padding: 4rem 0;
-        }
+    /* ===== Footer ===== */
+    footer{padding:28px 0;color:var(--muted);border-top:1px solid rgba(255,255,255,.08)}
 
-        .hero-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
+    /* ===== Mobile sticky CTA ===== */
+    .sticky-cta{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);z-index:60}
+    .sticky-cta .btn{padding:16px 22px;font-size:1.05rem}
 
-        .hero-text h2 {
-            font-size: 2.5rem;
-            color: #2c5aa0;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
+    /* ===== Motion ===== */
+    .reveal{opacity:0;transform: translateY(14px);transition: .6s ease}
+    .reveal.show{opacity:1;transform:none}
 
-        .hero-text p {
-            font-size: 1.2rem;
-            color: #666;
-            margin-bottom: 2rem;
-        }
+    @media (max-width: 900px){
+      .hero-wrap{grid-template-columns: 1fr}
+      .brand h1{font-size:1rem}
+      .cta-group{gap:8px}
+    }
 
-        .hero-image {
-            text-align: center;
-        }
-
-        .hero-image img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        /* Services Section */
-        .services {
-            padding: 4rem 0;
-            background: #f8f9fa;
-        }
-
-        .services h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            color: #2c5aa0;
-            margin-bottom: 3rem;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .service-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-        }
-
-        .service-card h3 {
-            color: #2c5aa0;
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .service-card p {
-            color: #666;
-            line-height: 1.6;
-        }
-
-        /* About Section */
-        .about {
-            padding: 4rem 0;
-        }
-
-        .about-content {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .about h2 {
-            font-size: 2.5rem;
-            color: #2c5aa0;
-            margin-bottom: 2rem;
-        }
-
-        .about p {
-            font-size: 1.1rem;
-            color: #666;
-            margin-bottom: 1.5rem;
-        }
-
-        /* Contact Section */
-        .contact {
-            background: linear-gradient(135deg, #2c5aa0, #4a90e2);
-            color: white;
-            padding: 4rem 0;
-        }
-
-        .contact-content {
-            text-align: center;
-        }
-
-        .contact h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .contact-info-detailed {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .contact-item {
-            background: rgba(255,255,255,0.1);
-            padding: 2rem;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-        }
-
-        .contact-item h3 {
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-        }
-
-        /* Footer */
-        footer {
-            background: #1a1a1a;
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .hero-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .hero-text h2 {
-                font-size: 2rem;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-info-detailed {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .service-card {
-            animation: fadeInUp 0.6s ease forwards;
-        }
-
-        .service-card:nth-child(2) { animation-delay: 0.1s; }
-        .service-card:nth-child(3) { animation-delay: 0.2s; }
-        .service-card:nth-child(4) { animation-delay: 0.3s; }
-        .service-card:nth-child(5) { animation-delay: 0.4s; }
-        .service-card:nth-child(6) { animation-delay: 0.5s; }
-
-        /* Call to Action Button */
-        .cta-button {
-            display: inline-block;
-            background: #ff6b6b;
-            color: white;
-            padding: 15px 30px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            margin-top: 1rem;
-        }
-
-        .cta-button:hover {
-            background: #ff5252;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
-        }
-    </style>
+    @media (prefers-reduced-motion: reduce){
+      .reveal{transition:none}
+      .btn:hover{transform:none}
+    }
+  </style>
 </head>
 <body>
-    <!-- Header -->
-  <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <h1>🩺 ექთნის მომსახურება</h1>
-                </div>
-                <div class="contact-info">
-                    <a href="tel:591805108" class="phone">📞 591 80 51 08</a>
-                    <a href="https://www.facebook.com/ფეისბუკი_დაემატება_მოგვიანებით" target="_blank" class="facebook-btn">
-                        📘 Facebook
-                    </a>
-                </div>
-            </div>
-        </div>
-    </header>
+  <a class="skip" href="#main">Skip to content</a>
+  <header aria-label="გვერდის თავსართი">
+    <div class="container bar">
+      <div class="brand" aria-label="ბრენდი">
+        <div class="brand-logo" aria-hidden="true">🩺</div>
+        <h1>ექთნის მომსახურება თბილისში</h1>
+      </div>
+      <nav class="cta-group" aria-label="სწრაფი კონტაქტი">
+        <a class="phone" href="tel:+995591805108" aria-label="დარეკვა +995 591 80 51 08">📞 +995 591 80 51 08</a>
+        <a class="btn viber" href="viber://chat?number=%2B995591805108" aria-label="Viber-ზე ჩატი">Viber</a>
+        <a class="btn outline" href="https://www.facebook.com/ფეისბუკი_დაემატება_მოგვიანებით" target="_blank" rel="noopener nofollow" aria-label="Facebook გვერდი">Facebook</a>
+      </nav>
+    </div>
+  </header>
 
-    <!-- Hero Section -->
+  <main id="main">
+    <!-- HERO -->
     <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h2>პროფესიონალური ექთნის მომსახურება თბილისში</h2>
-                    <p>🏠 ბინაზე გამოძახებით<br>
-                    📍 გადასხმა / ინფუზია<br>
-                    ⏰ დღის განმავლობაში</p>
-                    <a href="tel:591805108" class="cta-button">დამიკავშირდით ახლავე</a>
-                </div>
-                <div class="hero-image">
-        <img src="image.png" alt="ექთნის მომსახურება" style="width: 100%; height: auto; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
-
-                </div>
-            </div>
+      <div class="container hero-wrap">
+        <div>
+          <span class="tag">ბინაზე გამოძახებით · უსაფრთხო & სტერილური</span>
+          <h2>პროფესიონალური ექთნის მომსახურება — სწრაფად, სწორად, ადამიანურად</h2>
+          <p>გადასხმა/ინფუზია, ჭრილობის დამუშავება, ნაკერების მოხსნა, ინტოქსიკაცია, ვირუსული ინფექციები და სხვა.
+             მომსახურება <strong>დღის განმავლობაში</strong>, წინასწარი შეთანხმებით.</p>
+          <div class="highlights">
+            <span class="tag">📍 თბილისი</span>
+            <span class="tag">💉 გადასხმა/ინფუზია</span>
+            <span class="tag">🩹 ჭრილობა & ნაკერები</span>
+          </div>
+          <div class="cta-group">
+            <a class="btn" href="tel:+995591805108">დარეკვა ახლა</a>
+            <a class="btn outline" href="#services">სერვისების ნახვა</a>
+          </div>
         </div>
+        <div class="hero-img shadow">
+          <img src="image.png" alt="ექთანი მომსახურებას უწევს პაციენტს ბინაზე" loading="eager" />
+        </div>
+      </div>
     </section>
 
-    <!-- Services Section -->
-    <section class="services">
-        <div class="container">
-            <h2>🔹 ჩემი მომსახურებები</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <h3>🍷 ინტოქსიკაციის მკურნალობა</h3>
-                    <p>საკვებისმიერი და ალკოჰოლური ინტოქსიკაციის შემთხვევაში სწრაფი და ეფექტური მკურნალობა ბინაზე გამოძახებით.</p>
-                </div>
-                
-                <div class="service-card">
-                    <h3>🦠 ვირუსული ინფექციები</h3>
-                    <p>ვირუსული ინფექციების მკურნალობა და სიმპტომების შემსუბუქება პროფესიონალური ზრუნვით.</p>
-                </div>
-                
-                <div class="service-card">
-                    <h3>🤢 დიარეა, ფაღარათი, ღებინება</h3>
-                    <p>კუჭ-ნაწლავის ტრაქტის პრობლემების მკურნალობა და სითხის ბალანსის აღდგენა.</p>
-                </div>
-                
-                <div class="service-card">
-                    <h3>💧 სითხის დაკარგვის აღდგენა</h3>
-                    <p>ორგანიზმში სითხის ბალანსის აღდგენა ინტრავენური ინფუზიით.</p>
-                </div>
-                
-                <div class="service-card">
-                    <h3>🩹 ჭრილობის დამუშავება</h3>
-                    <p>ჭრილობების პროფესიონალური დამუშავება და სათანადო მოვლა.</p>
-                </div>
-                
-                <div class="service-card">
-                    <h3>🧵 ნაკერების მოხსნა</h3>
-                    <p>ქირურგული ნაკერების უსაფრთხო და უმტკივნეულო მოხსნა.</p>
-                </div>
-                
-                <div class="service-card">
-                    <h3>🌸 ალერგიული რეაქციები</h3>
-                    <p>ალერგიული რეაქციების სწრაფი და ეფექტური მკურნალობა.</p>
-                </div>
-                
-                <div class="service-card">
-                    <h3>💉 გადასხმა / ინფუზია</h3>
-                    <p>ინტრავენური გადასხმები და ინფუზიები ბინაზე, უსაფრთხო და სტერილურ პირობებში.</p>
-                </div>
-            </div>
+    <!-- SERVICES -->
+    <section id="services" class="section container">
+      <h3>მომსახურებები</h3>
+      <div class="grid services">
+        <article class="service reveal">
+          <div class="icon" aria-hidden="true">🍷</div>
+          <h4>ინტოქსიკაციის მართვა</h4>
+          <p>საკვებისმიერი და ალკოჰოლური ინტოქსიკაციისას — სითხეების ბალანსის აღდგენა და სიმპტომურ-সহায়ক ღონისძიებები.</p>
+        </article>
+        <article class="service reveal">
+          <div class="icon" aria-hidden="true">🦠</div>
+          <h4>ვირუსული ინფექციები</h4>
+          <p>გრიპისმაგვარი სიმპტომების შემსუბუქება, ტემპერატურის მართვა და რეკომენდაციები მოვლაზე.</p>
+        </article>
+        <article class="service reveal">
+          <div class="icon" aria-hidden="true">🤢</div>
+          <h4>დიარეა, ფაღარათი, ღებინება</h4>
+          <p>დეჰიდრატაციის პრევენცია/მკურნალობა, ელექტროლიტების ბალანსი და დაკვირვება.</p>
+        </article>
+        <article class="service reveal">
+          <div class="icon" aria-hidden="true">💧</div>
+          <h4>სითხის დაკარგვის აღდგენა</h4>
+          <p>ინტრავენური ინფუზიები უსაფრთხო, სტერილურ პირობებში ბინაზე.</p>
+        </article>
+        <article class="service reveal">
+          <div class="icon" aria-hidden="true">🩹</div>
+          <h4>ჭრილობის დამუშავება</h4>
+          <p>ანტისეპტიკა, პანსამაგრების შეცვლა, კონტროლი და რეკომენდაციები.</p>
+        </article>
+        <article class="service reveal">
+          <div class="icon" aria-hidden="true">🧵</div>
+          <h4>ნაკერების მოხსნა</h4>
+          <p>უსაფრთხოდ და უმტკივნეულოდ — ექიმის მითითების შესაბამისად.</p>
+        </article>
+        <article class="service reveal">
+          <div class="icon" aria-hidden="true">🌸</div>
+          <h4>ალერგიული რეაქციები</h4>
+          <p>მსუბუქი ალერგიული მდგომარეობების პირველადი მართვა და მონიტორინგი.</p>
+        </article>
+        <article class="service reveal">
+          <div class="icon" aria-hidden="true">💉</div>
+          <h4>გადასხმა / ინფუზია</h4>
+          <p>სითხეები და მედიკამენტები ინდივიდუალურად შეთანხმებული სქემით.</p>
+        </article>
+      </div>
+
+      <div class="info-banner" style="margin-top:22px">
+        <div class="alert" role="note" aria-label="გაფრთხილება">
+          <div style="font-size:1.3rem">⚠️</div>
+          <div>
+            <strong>სასწრაფო შემთხვევებში დარეკეთ 112.</strong> მოცემული სერვისი <em>არ</em> არის გადაუდებელი დახმარება. ინტრავენური პროცედურები ტარდება მხოლოდ შესაბამისი ჩვენებით და თანხმობით.
+          </div>
         </div>
+      </div>
     </section>
 
-    <!-- About Section -->
-    <section class="about">
-        <div class="container">
-            <div class="about-content">
-                <h2>💡 ჩემს შესახებ</h2>
-                <p>ვარ პროფესიონალური ექთანი, რომელიც თბილისში მოქმედებს მრავალი წლის განმავლობაში.</p>
-                
-                <p>ჩემი მიზანია თქვენთვის ხელმისაწვდომი გავხადოთ ყველაზე ხარისხიანი სამედიცინო მომსახურება პირდაპირ თქვენს სახლში.</p>
-                
-                <p><strong>მომსახურება ხელმისაწვდომია დღის განმავლობაში, წინასწარი შეთანხმებით.</strong></p>
-            </div>
+    <!-- ABOUT -->
+    <section class="section container about">
+      <h3>ჩემს შესახებ</h3>
+      <div class="grid" style="grid-template-columns:1.1fr .9fr;align-items:center">
+        <div class="card reveal">
+          <p>ვარ გამოცდილებაზე ორიენტირებული ექთანი თბილისში. ჩემი მიზანი არის, რომ <strong>ხარისხიანი მოვლა</strong> პირდაპირ თქვენს სახლამდე მივიტანო — ეკონომიურად, უსაფრთხოდ და ფრთხილად.</p>
+          <p>მუშაობ <strong>დღის განმავლობაში</strong> (წინასწარი შეთანხმებით). დეტალები და ვიზიტის დრო დავგეგმოთ ტელეფონით.</p>
+          <div class="cta-group" style="margin-top:10px">
+            <a class="btn" href="tel:+995591805108">დარეკვა</a>
+            <a class="btn outline" href="viber://chat?number=%2B995591805108">Viber</a>
+          </div>
         </div>
+        <div class="reveal">
+          <picture>
+            <img class="shadow" src="image.png" alt="ექთანი — პროფესიონალური მოვლა ბინაზე" loading="lazy" style="border-radius:var(--radius);border:1px solid rgba(255,255,255,.08)" />
+          </picture>
+        </div>
+      </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="contact">
-        <div class="container">
-            <div class="contact-content">
-                <h2>📞 დამიკავშირდით</h2>
-                <p>მზად ვარ დაგეხმაროთ ნებისმიერ დროს</p>
-                
-                <div class="contact-info-detailed">
-                    <div class="contact-item">
-                        <h3>📱 ტელეფონი</h3>
-                        <p><a href="tel:591805108" style="color: white; text-decoration: none; font-size: 1.2rem; font-weight: bold;">591 80 51 08</a></p>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <h3>📍 მომსახურების ზონა</h3>
-                        <p>თბილისი და მისი შემოგარენი</p>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <h3>⏰ მუშაობის დრო</h3>
-                        <p>დღის განმავლობაში<br>წინასწარი შეთანხმებით</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- FAQ -->
+    <section class="section container">
+      <h3>ხშირად დასმული კითხვები</h3>
+      <details class="reveal">
+        <summary>სერვისი რომელ უბნებშია ხელმისაწვდომი?</summary>
+        <p class="muted">თბილისი და მის შემოგარენში. ზუსტი მისამართის მიხედვით დაგიკავშირდებით დეტალებისთვის.</p>
+      </details>
+      <details class="reveal">
+        <summary>როდის შეიძლება ვიზიტის დაჯავშნა?</summary>
+        <p class="muted">დღის განმავლობაში, წინასწარი შეთანხმებით. სცადეთ დარეკვა ან Viber-ით შეტყობინება.</p>
+      </details>
+      <details class="reveal">
+        <summary>გადასხმა/ინფუზია რას მოიცავს?</summary>
+        <p class="muted">ინტრავენური სითხეები/მედიკამენტები ინიშნება ინდივიდუალურად, შესაბამისი ჩვენებით. უსაფრთხოება არის პრიორიტეტი.</p>
+      </details>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 ექთნის მომსახურება თბილისში. ყველა უფლება დაცულია.</p>
+    <!-- CONTACT -->
+    <section class="section container">
+      <h3>კონტაქტი</h3>
+      <div class="grid contact-grid">
+        <div class="card reveal">
+          <p class="muted">მზად ვარ დაგეხმაროთ — დაგვიკავშირდით სასურველ არხზე.</p>
+          <div class="cta-group" style="margin-top:8px">
+            <a class="btn" href="tel:+995591805108">📞 დარეკვა</a>
+            <a class="btn" style="background:#7c5cff" href="viber://chat?number=%2B995591805108">Viber</a>
+          </div>
         </div>
-    </footer>
+        <div class="card reveal">
+          <p><strong>მოსამსახურებელი ზონა:</strong> თბილისი</p>
+          <p><strong>სამუშაო დრო:</strong> დღის განმავლობაში · წინასწარი შეთანხმებით</p>
+        </div>
+      </div>
+    </section>
+  </main>
 
-    <script>
-        // Smooth scrolling for internal links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
+  <div class="sticky-cta" aria-hidden="true">
+    <a class="btn" href="tel:+995591805108">📞 დარეკვა · +995 591 80 51 08</a>
+  </div>
 
-        // Add fade-in animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+  <footer>
+    <div class="container">
+      <small>© <span id="y"></span> ექთნის მომსახურება თბილისში. ყველა უფლება დაცულია.</small>
+    </div>
+  </footer>
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
+  <!-- Structured data: Local business (MedicalBusiness) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalBusiness",
+    "name": "ექთნის მომსახურება თბილისში",
+    "url": "",
+    "image": "image.png",
+    "telephone": "+995591805108",
+    "areaServed": {
+      "@type": "AdministrativeArea",
+      "name": "Tbilisi"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Tbilisi",
+      "addressCountry": "GE"
+    },
+    "byAppointmentOnly": true
+  }
+  </script>
 
-        // Observe all sections
-        document.querySelectorAll('section').forEach(section => {
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(20px)';
-            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(section);
-        });
+  <!-- Structured data: FAQ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "სერვისი რომელ უბნებშია ხელმისაწვდომი?",
+        "acceptedAnswer": {"@type": "Answer","text": "თბილისი და მის შემოგარენში. ზუსტი მისამართის მიხედვით დაგიკავშირდებით დეტალებისთვის."}
+      },
+      {
+        "@type": "Question",
+        "name": "როდის შეიძლება ვიზიტის დაჯავშნა?",
+        "acceptedAnswer": {"@type": "Answer","text": "დღის განმავლობაში, წინასწარი შეთანხმებით. სცადეთ დარეკვა ან Viber-ით შეტყობინება."}
+      },
+      {
+        "@type": "Question",
+        "name": "გადასხმა/ინფუზია რას მოიცავს?",
+        "acceptedAnswer": {"@type": "Answer","text": "ინტრავენური სითხეები/მედიკამენტები ინიშნება ინდივიდუალურად, შესაბამისი ჩვენებით. უსაფრთხოება არის პრიორიტეტი."}
+      }
+    ]
+  }
+  </script>
 
-        // Phone number click tracking (optional analytics)
-        document.querySelectorAll('a[href^="tel:"]').forEach(phone => {
-            phone.addEventListener('click', function() {
-                console.log('Phone number clicked: ' + this.href);
-                // You can add analytics tracking here
-            });
-        });
-    </script>
+  <script defer>
+    // Year in footer
+    document.getElementById('y').textContent = new Date().getFullYear()
+
+    // Smooth reveal on scroll
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target) } })
+    }, {threshold:.14, rootMargin:'0px 0px -10% 0px'})
+    document.querySelectorAll('.reveal').forEach(el=> io.observe(el))
+
+    // Phone click tracking (simple)
+    document.querySelectorAll('a[href^="tel:"]').forEach(a=>{
+      a.addEventListener('click',()=>{
+        if(window.dataLayer){ window.dataLayer.push({event:'call_click', phone:a.getAttribute('href')}) }
+        else { console.log('call_click', a.getAttribute('href')) }
+      })
+    })
+
+    // Improve :focus visibility
+    const setFocusStyle = ()=>{
+      const style = document.createElement('style');
+      style.innerHTML = `:focus{outline:3px solid ${getComputedStyle(document.documentElement).getPropertyValue('--primary-2')};outline-offset:3px}`;
+      document.head.appendChild(style);
+    }; setFocusStyle();
+  </script>
+
+  <noscript>
+    <style>.reveal{opacity:1;transform:none}</style>
+  </noscript>
 </body>
 </html>
