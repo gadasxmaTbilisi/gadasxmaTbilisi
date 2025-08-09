@@ -26,6 +26,9 @@
       --radius: 18px;
       --radius-md: 14px;
       --radius-sm: 10px;
+      --wiggle-interval: 12s; /* how often the call wiggle repeats */
+      --wiggle-angle: 2.5deg;
+      --wiggle-distance: 1.8px;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
@@ -47,12 +50,15 @@
     .container{width:min(1200px, 92vw);margin-inline:auto}
     .grid{display:grid;gap:24px}
     .btn{
+      position:relative;
       display:inline-flex;align-items:center;justify-content:center;
       gap:.6rem;padding:14px 20px;border-radius:999px;text-decoration:none;font-weight:700;
       background:linear-gradient(135deg,var(--primary),var(--primary-2));
-      color:white; box-shadow: var(--shadow); border:0; cursor:pointer
+      color:white; box-shadow: var(--shadow); border:0; cursor:pointer;
+      transition: transform .2s ease, filter .2s ease;
     }
-    .btn:hover{transform:translateY(-2px);filter:brightness(1.05)}
+    .btn:hover{transform:translateY(-2px) scale(1.02);filter:brightness(1.05)}
+    .btn:active{transform:translateY(0) scale(.99)}
     .btn.outline{background:transparent;border:2px solid rgba(255,255,255,.25)}
     .tag{display:inline-block;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);padding:6px 12px;border-radius:999px;color:var(--muted);font-size:.9rem}
     .muted{color:var(--muted)}
@@ -70,7 +76,15 @@
     }
     .bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0}
     .brand{display:flex;align-items:center;gap:12px}
-    .brand-logo{inline-size:44px;block-size:44px;border-radius:12px;background:linear-gradient(135deg,var(--primary),var(--primary-2));display:grid;place-items:center;box-shadow:var(--shadow)}
+    .brand-logo{inline-size:44px;block-size:44px;border-radius:12px;background:linear-gradient(135deg,var(--primary),var(--primary-2));display:grid;place-items:center;box-shadow:var(--shadow);
+      position:relative;overflow:hidden}
+    .brand-logo::after{ /* gentle shimmer */
+      content:"";position:absolute;inset:0;background:linear-gradient(120deg, transparent 20%, rgba(255,255,255,.18) 40%, transparent 60%);
+      transform:translateX(-100%);
+      animation: shimmer 7s ease-in-out infinite;
+    }
+    @keyframes shimmer{ 0%,70%{ transform:translateX(-120%) } 75%{ transform:translateX(120%) } 100%{ transform:translateX(120%) } }
+
     .brand h1{font-size:1.15rem;margin:0}
     .cta-group{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
     .phone{background:white;color:#0a2150;padding:10px 16px;border-radius:999px;font-weight:800;text-decoration:none}
@@ -82,7 +96,8 @@
     .hero h2{font-size: clamp(1.6rem, 2.8vw, 2.6rem);margin:0 0 12px}
     .hero p{font-size: clamp(1rem, 1.6vw, 1.15rem);margin:0 0 20px;color:var(--muted)}
     .hero .highlights{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
-    .hero-img{border-radius:var(--radius);overflow:hidden;border:1px solid rgba(255,255,255,.08)}
+    .hero-img{border-radius:var(--radius);overflow:hidden;border:1px solid rgba(255,255,255,.08);
+      will-change: transform; transition: transform .25s ease; transform-style: preserve-3d;}
     .hero-img img{aspect-ratio: 16/10; object-fit: cover}
 
     /* ===== Services ===== */
@@ -92,7 +107,12 @@
     .service{position:relative;padding:22px;border-radius:var(--radius-md);background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.1)}
     .service h4{margin:0 0 8px;font-size:1.1rem}
     .service p{margin:0;color:var(--muted)}
-    .service .icon{inline-size:42px;block-size:42px;border-radius:12px;display:grid;place-items:center;margin-bottom:12px;background:rgba(31,120,255,.15);border:1px solid rgba(31,120,255,.25)}
+    .service .icon{inline-size:42px;block-size:42px;border-radius:12px;display:grid;place-items:center;margin-bottom:12px;background:rgba(31,120,255,.15);border:1px solid rgba(31,120,255,.25);
+      animation: floaty 6.5s ease-in-out infinite; will-change: transform;}
+    @keyframes floaty{ 0%,100%{ transform: translateY(0) rotate(0) } 50%{ transform: translateY(-6px) rotate(-2deg) } }
+    /* stagger the icon motion a bit */
+    .services .service:nth-child(odd) .icon{ animation-duration:7.2s; animation-delay: .8s }
+    .services .service:nth-child(3n) .icon{ animation-duration:6.2s; animation-delay: .4s }
 
     /* ===== Trust / Safety ===== */
     .info-banner{display:grid;grid-template-columns:1fr;gap:14px}
@@ -117,19 +137,47 @@
     .sticky-cta{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);z-index:60}
     .sticky-cta .btn{padding:16px 22px;font-size:1.05rem}
 
-    /* ===== Motion ===== */
+    /* ===== Reveal on scroll ===== */
     .reveal{opacity:0;transform: translateY(14px);transition: .6s ease}
     .reveal.show{opacity:1;transform:none}
+
+    /* ===== Subtle attention for call buttons ===== */
+    .call-pulse{ position:relative; transform-origin:center; animation: phoneWiggle var(--wiggle-interval) ease-in-out infinite; }
+    @keyframes phoneWiggle{
+      0%,82% { transform:none }
+      83% { transform: translateX(var(--wiggle-distance)) rotate(var(--wiggle-angle)) }
+      84% { transform: translateX(calc(var(--wiggle-distance) * -1)) rotate(calc(var(--wiggle-angle) * -1)) }
+      85% { transform: translateX(var(--wiggle-distance)) rotate(var(--wiggle-angle)) }
+      86% { transform: translateX(calc(var(--wiggle-distance) * -1)) rotate(calc(var(--wiggle-angle) * -1)) }
+      87% { transform: translateX(var(--wiggle-distance)) rotate(var(--wiggle-angle)) }
+      88% { transform: translateX(calc(var(--wiggle-distance) * -1)) rotate(calc(var(--wiggle-angle) * -1)) }
+      92%,100% { transform:none }
+    }
+    .call-pulse::after{ /* soft ring effect timed with wiggle */
+      content:""; position:absolute; inset:-6px; border-radius:999px; border:2px solid rgba(255,255,255,.25); opacity:0; pointer-events:none;
+      animation: ringPing var(--wiggle-interval) ease-out infinite;
+    }
+    @keyframes ringPing{
+      0%,82%{ opacity:0; transform:scale(1) }
+      83%{ opacity:.35 }
+      92%{ opacity:0; transform:scale(1.35) }
+      100%{ opacity:0 }
+    }
+
+    /* Accessibility: respect reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      .reveal{transition:none}
+      .btn:hover{transform:none}
+      .service .icon{animation:none}
+      .call-pulse{animation:none}
+      .call-pulse::after{display:none}
+      .hero-img{transition:none}
+    }
 
     @media (max-width: 900px){
       .hero-wrap{grid-template-columns: 1fr}
       .brand h1{font-size:1rem}
       .cta-group{gap:8px}
-    }
-
-    @media (prefers-reduced-motion: reduce){
-      .reveal{transition:none}
-      .btn:hover{transform:none}
     }
   </style>
 </head>
@@ -142,7 +190,7 @@
         <h1>ექთნის მომსახურება თბილისში</h1>
       </div>
       <nav class="cta-group" aria-label="სწრაფი კონტაქტი">
-        <a class="phone" href="tel:+995591805108" aria-label="დარეკვა +995 591 80 51 08">📞 +995 591 80 51 08</a>
+        <a class="phone call-pulse" href="tel:+995591805108" aria-label="დარეკვა +995 591 80 51 08">📞 +995 591 80 51 08</a>
         <a class="btn viber" href="viber://chat?number=%2B995591805108" aria-label="Viber-ზე ჩატი">Viber</a>
         <a class="btn outline" href="https://www.facebook.com/ფეისბუკი_დაემატება_მოგვიანებით" target="_blank" rel="noopener nofollow" aria-label="Facebook გვერდი">Facebook</a>
       </nav>
@@ -164,11 +212,11 @@
             <span class="tag">🩹 ჭრილობა & ნაკერები</span>
           </div>
           <div class="cta-group">
-            <a class="btn" href="tel:+995591805108">დამიკავშირდით ახლავე</a>
+            <a class="btn call-pulse" href="tel:+995591805108">დამიკავშირდით ახლავე</a>
             <a class="btn outline" href="#services">სერვისების ნახვა</a>
           </div>
         </div>
-        <div class="hero-img shadow">
+        <div class="hero-img shadow" id="heroTilt">
           <img src="image.png" alt="ექთანი მომსახურებას უწევს პაციენტს ბინაზე" loading="eager" />
         </div>
       </div>
@@ -238,7 +286,7 @@
           <p>ვარ გამოცდილებაზე ორიენტირებული ექთანი თბილისში. ჩემი მიზანი არის, რომ <strong>ხარისხიანი მოვლა</strong> პირდაპირ თქვენს სახლამდე მივიტანო — ეკონომიურად, უსაფრთხოდ და ფრთხილად.</p>
           <p>ვმუშაობ <strong>დღის განმავლობაში</strong> (წინასწარი შეთანხმებით). დეტალები და ვიზიტის დრო დავგეგმოთ ტელეფონით.</p>
           <div class="cta-group" style="margin-top:10px">
-            <a class="btn" href="tel:+995591805108">დარეკვა</a>
+            <a class="btn call-pulse" href="tel:+995591805108">დარეკვა</a>
             <a class="btn outline" href="viber://chat?number=%2B995591805108">Viber</a>
           </div>
         </div>
@@ -274,7 +322,7 @@
         <div class="card reveal">
           <p class="muted">მზად ვარ დაგეხმაროთ — დამიკავშირდით სასურველი მეთოდით.</p>
           <div class="cta-group" style="margin-top:8px">
-            <a class="btn" href="tel:+995591805108">📞 დარეკვა</a>
+            <a class="btn call-pulse" href="tel:+995591805108">📞 დარეკვა</a>
             <a class="btn" style="background:#7c5cff" href="viber://chat?number=%2B995591805108">Viber</a>
           </div>
         </div>
@@ -287,7 +335,7 @@
   </main>
 
   <div class="sticky-cta" aria-hidden="true">
-    <a class="btn" href="tel:+995591805108">📞 დარეკვა · +995 591 80 51 08</a>
+    <a class="btn call-pulse" href="tel:+995591805108">📞 დარეკვა · +995 591 80 51 08</a>
   </div>
 
   <footer>
@@ -367,6 +415,22 @@
       style.innerHTML = `:focus{outline:3px solid ${getComputedStyle(document.documentElement).getPropertyValue('--primary-2')};outline-offset:3px}`;
       document.head.appendChild(style);
     }; setFocusStyle();
+
+    // Subtle mouse-tilt on the hero image (disabled for reduced-motion)
+    const heroTilt = document.getElementById('heroTilt');
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const canHover = window.matchMedia('(hover: hover)').matches;
+    if(heroTilt && !prefersReduced && canHover){
+      const max = 6; // degrees
+      const onMove = (e)=>{
+        const r = heroTilt.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width - 0.5;
+        const y = (e.clientY - r.top) / r.height - 0.5;
+        heroTilt.style.transform = `rotateY(${x*max}deg) rotateX(${(-y)*max}deg)`
+      };
+      heroTilt.addEventListener('mousemove', onMove);
+      heroTilt.addEventListener('mouseleave', ()=>{ heroTilt.style.transform = '' });
+    }
   </script>
 
   <noscript>
@@ -374,5 +438,3 @@
   </noscript>
 </body>
 </html>
-
-
