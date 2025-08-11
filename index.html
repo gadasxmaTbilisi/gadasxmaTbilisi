@@ -32,6 +32,13 @@
       --facebook:#1877f2; --facebook2:#00b4ff; 
     }
 
+    /* keep emphasis but avoid buggy italics */
+    :lang(ka) em, :lang(ka) i{
+      font-style: normal;
+      font-weight: 700;           /* or 600 */
+      text-decoration: underline; /* optional */
+    }
+
 
 .btn.facebook.facebook-outline{
   --ring: 3px;            /* ring thickness */
