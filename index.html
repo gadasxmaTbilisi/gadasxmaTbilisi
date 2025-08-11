@@ -29,35 +29,36 @@
       --wiggle-interval: 12s; /* how often the call wiggle repeats */
       --wiggle-angle: 2.5deg;
       --wiggle-distance: 1.8px;
+      --facebook:#1877f2; --facebook2:#00b4ff; 
     }
 
-   .btn.facebook.fb-glow{
-  background: linear-gradient(135deg, var(--facebook), #3b82f6);
-  /* keep your default card shadow + add gentle glow */
-  box-shadow:
-    var(--shadow),
-    0 0 18px rgba(24,119,242,.60),
-    0 0 42px rgba(24,119,242,.32);
-  animation: none !important;
+
+.btn.facebook.facebook-outline{
+  --ring: 3px;            /* ring thickness */
+  background: transparent  !important; /* keep pill hollow */;
+  border: 0;              /* ring won’t affect layout */
   position: relative;
-  /* make the label itself pop a bit even without an svg icon */
-  text-shadow: 0 0 6px rgba(24,119,242,.85);
+}
+.btn.facebook.facebook-outline::before{
+  content:"";
+  position:absolute;
+  inset:0;                /* sits exactly on the edge */
+  border-radius:999px;
+  padding:var(--ring);
+  background:linear-gradient(135deg, var(--facebook), var(--facebook2));
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor; mask-composite:exclude;
+  filter:drop-shadow(0 0 16px rgba(24,119,242,.55))
+         drop-shadow(0 0 36px rgba(0,180,255,.32));
+  pointer-events:none;
 }
 
-/* kill the old animated ring entirely */
-.btn.facebook::after{
-  content: none !important;
-  animation: none !important;
-  opacity: 0 !important;
-}
 
-/* slight hover bump, still constant glow */
-.btn.facebook.fb-glow:hover{
-  box-shadow:
-    var(--shadow),
-    0 0 24px rgba(24,119,242,.75),
-    0 0 68px rgba(24,119,242,.45);
-}
+
+
+
+
+
     @keyframes fbHalo{
       0%,80% { opacity:0; transform:scale(1) }
       84%    { opacity:.35 }
@@ -232,16 +233,11 @@
       <nav class="cta-group" aria-label="სწრაფი კონტაქტი">
         <a class="phone call-pulse" href="tel:+995591805108" aria-label="დარეკვა +995 591 80 51 08">📞 +995 591 80 51 08</a>
         <a class="btn viber" href="viber://chat?number=%2B995591805108" aria-label="Viber-ზე ჩატი">Viber</a>
-        <a class="btn facebook fb-glow"
-          href="https://www.facebook.com/share/177azKq9nm/"
-          target="_blank" rel="noopener nofollow"
-          aria-label="Facebook გვერდი">
-          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <path fill="currentColor"
-              d="M22 12.07C22 6.49 17.52 2 11.95 2S2 6.49 2 12.07c0 5.02 3.66 9.18 8.44 9.93v-7.02H7.9v-2.91h2.54V9.85c0-2.5 1.5-3.89 3.8-3.89 1.1 0 2.24.2 2.24.2v2.47h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.44 2.91h-2.34v7.02C18.34 21.25 22 17.09 22 12.07z"/>
-          </svg>
-          <span>Facebook</span>
-        </a>
+        <a class="btn facebook facebook-outline"
+        href="https://www.facebook.com/share/177azKq9nm/" target="_blank" rel="noopener nofollow">
+        <span>Facebook</span>
+      </a>
+
 
 
       </nav>
@@ -338,8 +334,8 @@
           <p>ვმუშაობ <strong>დღის განმავლობაში</strong> (წინასწარი შეთანხმებით). დეტალები და ვიზიტის დრო დავგეგმოთ ტელეფონით.</p>
           <div class="cta-group" style="margin-top:10px">
             <a class="btn call-pulse" href="tel:+995591805108">დარეკვა</a>
-            <a class="btn outline" href="viber://chat?number=%2B995591805108">Viber</a>
-            <a class="btn facebook fb-glow" href="https://www.facebook.com/share/177azKq9nm/" target="_blank" rel="noopener nofollow">Facebook</a>
+            <a class="btn" style="background:#7c5cff" href="viber://chat?number=%2B995591805108">Viber</a>
+            <a class="btn facebook facebook-outline " href="https://www.facebook.com/share/177azKq9nm/" target="_blank" rel="noopener nofollow">Facebook</a>
 
           </div>
         </div>
@@ -377,6 +373,7 @@
           <div class="cta-group" style="margin-top:8px">
             <a class="btn call-pulse" href="tel:+995591805108">📞 დარეკვა</a>
             <a class="btn" style="background:#7c5cff" href="viber://chat?number=%2B995591805108">Viber</a>
+            <a class="btn facebook facebook-outline " href="https://www.facebook.com/share/177azKq9nm/" target="_blank" rel="noopener nofollow">Facebook</a>
           </div>
         </div>
         <div class="card reveal">
