@@ -30,6 +30,46 @@
       --wiggle-angle: 2.5deg;
       --wiggle-distance: 1.8px;
     }
+
+   .btn.facebook.fb-glow{
+  background: linear-gradient(135deg, var(--facebook), #3b82f6);
+  /* keep your default card shadow + add gentle glow */
+  box-shadow:
+    var(--shadow),
+    0 0 18px rgba(24,119,242,.60),
+    0 0 42px rgba(24,119,242,.32);
+  animation: none !important;
+  position: relative;
+  /* make the label itself pop a bit even without an svg icon */
+  text-shadow: 0 0 6px rgba(24,119,242,.85);
+}
+
+/* kill the old animated ring entirely */
+.btn.facebook::after{
+  content: none !important;
+  animation: none !important;
+  opacity: 0 !important;
+}
+
+/* slight hover bump, still constant glow */
+.btn.facebook.fb-glow:hover{
+  box-shadow:
+    var(--shadow),
+    0 0 24px rgba(24,119,242,.75),
+    0 0 68px rgba(24,119,242,.45);
+}
+    @keyframes fbHalo{
+      0%,80% { opacity:0; transform:scale(1) }
+      84%    { opacity:.35 }
+      92%    { opacity:0; transform:scale(1.18) }
+      100%   { opacity:0 }
+    }
+
+    /* Respect reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      .fb-glow{ animation:none; box-shadow:none }
+      .btn.facebook::after{ animation:none; opacity:0 }
+    }
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
@@ -192,7 +232,18 @@
       <nav class="cta-group" aria-label="სწრაფი კონტაქტი">
         <a class="phone call-pulse" href="tel:+995591805108" aria-label="დარეკვა +995 591 80 51 08">📞 +995 591 80 51 08</a>
         <a class="btn viber" href="viber://chat?number=%2B995591805108" aria-label="Viber-ზე ჩატი">Viber</a>
-        <a class="btn outline" href="https://www.facebook.com/share/177azKq9nm/" target="_blank" rel="noopener nofollow" aria-label="Facebook გვერდი">Facebook</a>
+        <a class="btn facebook fb-glow"
+          href="https://www.facebook.com/share/177azKq9nm/"
+          target="_blank" rel="noopener nofollow"
+          aria-label="Facebook გვერდი">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path fill="currentColor"
+              d="M22 12.07C22 6.49 17.52 2 11.95 2S2 6.49 2 12.07c0 5.02 3.66 9.18 8.44 9.93v-7.02H7.9v-2.91h2.54V9.85c0-2.5 1.5-3.89 3.8-3.89 1.1 0 2.24.2 2.24.2v2.47h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.44 2.91h-2.34v7.02C18.34 21.25 22 17.09 22 12.07z"/>
+          </svg>
+          <span>Facebook</span>
+        </a>
+
+
       </nav>
     </div>
   </header>
@@ -288,6 +339,8 @@
           <div class="cta-group" style="margin-top:10px">
             <a class="btn call-pulse" href="tel:+995591805108">დარეკვა</a>
             <a class="btn outline" href="viber://chat?number=%2B995591805108">Viber</a>
+            <a class="btn facebook fb-glow" href="https://www.facebook.com/share/177azKq9nm/" target="_blank" rel="noopener nofollow">Facebook</a>
+
           </div>
         </div>
         <div class="reveal">
@@ -438,9 +491,3 @@
   </noscript>
 </body>
 </html>
-
-
-
-
-
-
