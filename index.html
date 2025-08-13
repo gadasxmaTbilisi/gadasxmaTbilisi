@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ka">
+<html lang="ka" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -10,185 +10,176 @@
   <meta property="og:description" content="სწრაფი და უსაფრთხო მომსახურება ბინაზე. დარეკეთ: +995 591 80 51 08" />
   <meta property="og:image" content="image.png" />
   <meta property="og:type" content="website" />
-  <meta name="theme-color" content="#1f78ff" />
+  <meta name="theme-color" content="#ffffff" id="metaThemeColor" />
   <style>
+    /* ---------------------------------------------
+       THEME SYSTEM
+       - Light is default via [data-theme="light"] on <html>
+       - Dark overrides inside [data-theme="dark"]
+       - Respects prefers-color-scheme on first visit
+    ----------------------------------------------*/
+
     :root{
-      --bg:#0b1221;          /* page background (dark navy gradient base) */
-      --bg-2:#0e1a33;
-      --card:#0f1f3f;
-      --primary:#1f78ff;     /* primary blue */
-      --primary-2:#00b4ff;   /* cyan accent */
-      --text:#e7eefc;        /* main text on dark */
-      --muted:#a6b8de;       /* secondary text */
-      --success:#22c55e;     /* success green */
-      --danger:#ef4444;      /* red */
-      --shadow: 0 20px 50px rgba(0,0,0,.35);
-      --radius: 18px;
-      --radius-md: 14px;
-      --radius-sm: 10px;
-      --wiggle-interval: 12s; /* how often the call wiggle repeats */
-      --wiggle-angle: 2.5deg;
-      --wiggle-distance: 1.8px;
-      --facebook:#1877f2; --facebook2:#00b4ff; 
+      /* Radii, sizing, shared tokens */
+      --radius: 18px; --radius-md: 14px; --radius-sm: 10px;
+      --shadow: 0 20px 50px rgba(0,0,0,.12);
+      --wiggle-interval: 12s; --wiggle-angle: 2.5deg; --wiggle-distance: 1.8px;
+      --facebook:#1877f2; --facebook2:#00b4ff;
     }
 
- 
-
-.btn.facebook.facebook-outline{
-  --ring: 3px;            /* ring thickness */
-  background: transparent  !important; /* keep pill hollow */;
-  border: 0;              /* ring won’t affect layout */
-  position: relative;
-}
-.btn.facebook.facebook-outline::before {
-  content:"";
-  position:absolute;
-  inset:0;
-  border-radius:999px;
-  padding:var(--ring);
-  background:linear-gradient(135deg, var(--facebook), var(--facebook2));
-
-  /* Add standard property for compatibility */
-  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-
-  -webkit-mask-composite:xor;
-          mask-composite:exclude;
-
-  filter:drop-shadow(0 0 16px rgba(24,119,242,.55))
-         drop-shadow(0 0 36px rgba(0,180,255,.32));
-  pointer-events:none;
-}
-
-
-
-
-
-
-    @keyframes fbHalo{
-      0%,80% { opacity:0; transform:scale(1) }
-      84%    { opacity:.35 }
-      92%    { opacity:0; transform:scale(1.18) }
-      100%   { opacity:0 }
+    html[data-theme="light"]{
+      /* LIGHT THEME */
+      --bg: #f7f9fc;                 /* app background base */
+      --bg-2: #eef3fb;               /* accent blend */
+      --surface: #ffffff;            /* cards */
+      --surface-2: #f1f5fe;          /* subtle panels */
+      --border: #e7eef6;
+      --text: #0b1221;               /* primary text */
+      --muted: #55627a;
+      --primary:#1f78ff;             /* brand */
+      --primary-2:#00b4ff;
+      --success:#16a34a; --danger:#ef4444;
+      --header-bg: linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.86));
+      --header-border: #e6edf7;
+      --chip: rgba(15, 39, 89, .06);
+      --chip-border: rgba(15, 39, 89, .10);
+      --ring-contrast: rgba(3, 18, 33, .18);
     }
 
-    /* Respect reduced motion */
-    @media (prefers-reduced-motion: reduce){
-      .fb-glow{ animation:none; box-shadow:none }
-      .btn.facebook::after{ animation:none; opacity:0 }
+    html[data-theme="dark"]{
+      /* DARK THEME */
+      --bg:#0b1221; --bg-2:#0e1a33;  /* gradient base */
+      --surface: rgba(255,255,255,.04);
+      --surface-2: rgba(255,255,255,.06);
+      --border: rgba(255,255,255,.10);
+      --text:#e7eefc; --muted:#a6b8de;
+      --primary:#1f78ff; --primary-2:#00b4ff;
+      --success:#22c55e; --danger:#ef4444;
+      --header-bg: linear-gradient(180deg, rgba(6,8,15,.8), rgba(6,8,15,.6));
+      --header-border: rgba(255,255,255,.08);
+      --chip: rgba(255,255,255,.06);
+      --chip-border: rgba(255,255,255,.12);
+      --ring-contrast: rgba(255,255,255,.25);
     }
+
+    /* Base */
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
       color:var(--text);
-      background: radial-gradient(1200px 600px at 20% -10%, #1a2a52 0%, transparent 60%),
-                  radial-gradient(1200px 600px at 100% 10%, #0b3b7f 0%, transparent 55%),
-                  linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+      background:
+        radial-gradient(1200px 600px at 20% -10%, color-mix(in oklab, var(--primary) 22%, transparent) 0%, transparent 60%),
+        radial-gradient(1200px 600px at 100% 10%, color-mix(in oklab, var(--primary-2) 18%, transparent) 0%, transparent 55%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
       line-height:1.65;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
     }
     a{color:inherit}
     img{max-width:100%;display:block}
 
-    /* ===== Utility ===== */
     .container{width:min(1200px, 92vw);margin-inline:auto}
     .grid{display:grid;gap:24px}
+
+    /* Buttons */
     .btn{
-      position:relative;
-      display:inline-flex;align-items:center;justify-content:center;
-      gap:.6rem;padding:14px 20px;border-radius:999px;text-decoration:none;font-weight:700;
-      background:linear-gradient(135deg,var(--primary),var(--primary-2));
-      color:white; box-shadow: var(--shadow); border:0; cursor:pointer;
+      position:relative; display:inline-flex; align-items:center; justify-content:center;
+      gap:.6rem; padding:14px 20px; border-radius:999px; text-decoration:none; font-weight:700;
+      background:linear-gradient(135deg,var(--primary),var(--primary-2)); color:#fff;
+      box-shadow: var(--shadow); border:0; cursor:pointer;
       transition: transform .2s ease, filter .2s ease;
     }
     .btn:hover{transform:translateY(-2px) scale(1.02);filter:brightness(1.05)}
     .btn:active{transform:translateY(0) scale(.99)}
-    .btn.outline{background:transparent;border:2px solid rgba(255,255,255,.25)}
-    .tag{display:inline-block;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);padding:6px 12px;border-radius:999px;color:var(--muted);font-size:.9rem}
+    .btn.outline{background:transparent;border:2px solid var(--ring-contrast);color:var(--text)}
+
+    .tag{display:inline-block;background:var(--chip);border:1px solid var(--chip-border);padding:6px 12px;border-radius:999px;color:var(--muted);font-size:.9rem}
     .muted{color:var(--muted)}
     .shadow{box-shadow:var(--shadow)}
-    .card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);backdrop-filter: blur(10px);border-radius:var(--radius);padding:24px}
+    .card{background:var(--surface);border:1px solid var(--border);backdrop-filter: blur(10px);border-radius:var(--radius);padding:24px}
 
-    /* ===== Header ===== */
+    /* Header */
     .skip{position:absolute;left:-9999px}
     .skip:focus{left:16px;top:16px;background:#000;color:#fff;padding:10px 14px;border-radius:8px;z-index:9999}
 
     header{
-      position:sticky;top:0;z-index:50;backdrop-filter: saturate(150%) blur(10px);
-      background:linear-gradient(180deg, rgba(6,8,15,.8), rgba(6,8,15,.6));
-      border-bottom:1px solid rgba(255,255,255,.08)
+      position:sticky; top:0; z-index:50; backdrop-filter: saturate(150%) blur(10px);
+      background: var(--header-bg);
+      border-bottom:1px solid var(--header-border);
     }
     .bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0}
     .brand{display:flex;align-items:center;gap:12px}
-    .brand-logo{inline-size:44px;block-size:44px;border-radius:12px;background:linear-gradient(135deg,var(--primary),var(--primary-2));display:grid;place-items:center;box-shadow:var(--shadow);
-      position:relative;overflow:hidden}
-    .brand-logo::after{ /* gentle shimmer */
+    .brand-logo{inline-size:44px;block-size:44px;border-radius:12px;background:linear-gradient(135deg,var(--primary),var(--primary-2));display:grid;place-items:center;box-shadow:var(--shadow);position:relative;overflow:hidden}
+    .brand-logo::after{
       content:"";position:absolute;inset:0;background:linear-gradient(120deg, transparent 20%, rgba(255,255,255,.18) 40%, transparent 60%);
-      transform:translateX(-100%);
-      animation: shimmer 7s ease-in-out infinite;
+      transform:translateX(-100%); animation: shimmer 7s ease-in-out infinite;
     }
     @keyframes shimmer{ 0%,70%{ transform:translateX(-120%) } 75%{ transform:translateX(120%) } 100%{ transform:translateX(120%) } }
 
-    .brand h1{font-size:1.15rem;margin:0}
+    .brand h1{font-size:1.12rem;margin:0}
     .cta-group{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
     .phone{background:white;color:#0a2150;padding:10px 16px;border-radius:999px;font-weight:800;text-decoration:none}
     .viber{background:#7c5cff;color:#fff}
 
-    /* ===== Hero ===== */
+    /* Theme toggle */
+    .theme-toggle{
+      display:inline-flex; align-items:center; gap:.5rem; padding:10px 14px; border-radius:999px; border:1px solid var(--border);
+      background:var(--surface); cursor:pointer; font-weight:700; color:var(--text);
+    }
+    .theme-toggle .icon{font-size:1.1rem; display:inline-grid; place-items:center; width:1.2rem;}
+
+    /* Hero */
     .hero{position:relative;padding: clamp(56px, 7vw, 96px) 0}
     .hero-wrap{display:grid;grid-template-columns: 1.2fr 1fr;gap:42px;align-items:center}
     .hero h2{font-size: clamp(1.6rem, 2.8vw, 2.6rem);margin:0 0 12px}
     .hero p{font-size: clamp(1rem, 1.6vw, 1.15rem);margin:0 0 20px;color:var(--muted)}
     .hero .highlights{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
-    .hero-img{border-radius:var(--radius);overflow:hidden;border:1px solid rgba(255,255,255,.08);
-      will-change: transform; transition: transform .25s ease; transform-style: preserve-3d;}
+    .hero-img{border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);will-change: transform; transition: transform .25s ease; transform-style: preserve-3d;}
     .hero-img img{aspect-ratio: 16/10; object-fit: cover}
 
-    /* ===== Services ===== */
+    /* Section */
     .section{padding: clamp(52px, 7vw, 84px) 0}
     .section h3{font-size: clamp(1.3rem, 2.2vw, 2rem);margin:0 0 22px}
+
+    /* Services */
     .services{grid-template-columns: repeat(auto-fit, minmax(260px, 1fr))}
-    .service{position:relative;padding:22px;border-radius:var(--radius-md);background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.1)}
+    .service{position:relative;padding:22px;border-radius:var(--radius-md);background:linear-gradient(180deg, var(--surface-2), var(--surface));border:1px solid var(--border)}
     .service h4{margin:0 0 8px;font-size:1.1rem}
     .service p{margin:0;color:var(--muted)}
-    .service .icon{inline-size:42px;block-size:42px;border-radius:12px;display:grid;place-items:center;margin-bottom:12px;background:rgba(31,120,255,.15);border:1px solid rgba(31,120,255,.25);
-      animation: floaty 6.5s ease-in-out infinite; will-change: transform;}
+    .service .icon{inline-size:42px;block-size:42px;border-radius:12px;display:grid;place-items:center;margin-bottom:12px;background:color-mix(in oklab, var(--primary) 22%, transparent);border:1px solid color-mix(in oklab, var(--primary) 35%, transparent);animation: floaty 6.5s ease-in-out infinite; will-change: transform;}
     @keyframes floaty{ 0%,100%{ transform: translateY(0) rotate(0) } 50%{ transform: translateY(-6px) rotate(-2deg) } }
-    /* stagger the icon motion a bit */
     .services .service:nth-child(odd) .icon{ animation-duration:7.2s; animation-delay: .8s }
     .services .service:nth-child(3n) .icon{ animation-duration:6.2s; animation-delay: .4s }
 
-    /* ===== Trust / Safety ===== */
+    /* Info / Safety */
     .info-banner{display:grid;grid-template-columns:1fr;gap:14px}
-    .alert{display:flex;gap:12px;align-items:flex-start;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);padding:16px;border-radius:var(--radius-sm)}
+    .alert{display:flex;gap:12px;align-items:flex-start;background:color-mix(in oklab, var(--danger) 9%, transparent);border:1px solid color-mix(in oklab, var(--danger) 28%, transparent);padding:16px;border-radius:var(--radius-sm)}
 
-    /* ===== About ===== */
+    /* About */
     .about p{color:var(--muted)}
 
-    /* ===== FAQ ===== */
-    details{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius-sm);padding:14px}
+    /* FAQ */
+    details{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px}
     details + details{margin-top:10px}
     summary{cursor:pointer;font-weight:700}
-    details[open] summary{color:#cfe1ff}
+    html[data-theme="dark"] details[open] summary{color:#cfe1ff}
 
-    /* ===== Contact ===== */
+    /* Contact */
     .contact-grid{grid-template-columns: repeat(auto-fit, minmax(260px,1fr))}
 
-    /* ===== Footer ===== */
-    footer{padding:28px 0;color:var(--muted);border-top:1px solid rgba(255,255,255,.08)}
+    /* Footer */
+    footer{padding:28px 0;color:var(--muted);border-top:1px solid var(--border)}
 
-    /* ===== Mobile sticky CTA ===== */
+    /* Mobile sticky CTA */
     .sticky-cta{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);z-index:60}
     .sticky-cta .btn{padding:16px 22px;font-size:1.05rem}
 
-    /* ===== Reveal on scroll ===== */
+    /* Reveal on scroll */
     .reveal{opacity:0;transform: translateY(14px);transition: .6s ease}
     .reveal.show{opacity:1;transform:none}
 
-    /* ===== Subtle attention for call buttons ===== */
+    /* Subtle attention for call buttons */
     .call-pulse{ position:relative; transform-origin:center; animation: phoneWiggle var(--wiggle-interval) ease-in-out infinite; }
     @keyframes phoneWiggle{
       0%,82% { transform:none }
@@ -200,18 +191,10 @@
       88% { transform: translateX(calc(var(--wiggle-distance) * -1)) rotate(calc(var(--wiggle-angle) * -1)) }
       92%,100% { transform:none }
     }
-    .call-pulse::after{ /* soft ring effect timed with wiggle */
-      content:""; position:absolute; inset:-6px; border-radius:999px; border:2px solid rgba(255,255,255,.25); opacity:0; pointer-events:none;
-      animation: ringPing var(--wiggle-interval) ease-out infinite;
-    }
-    @keyframes ringPing{
-      0%,82%{ opacity:0; transform:scale(1) }
-      83%{ opacity:.35 }
-      92%{ opacity:0; transform:scale(1.35) }
-      100%{ opacity:0 }
-    }
+    .call-pulse::after{ content:""; position:absolute; inset:-6px; border-radius:999px; border:2px solid var(--ring-contrast); opacity:0; pointer-events:none; animation: ringPing var(--wiggle-interval) ease-out infinite; }
+    @keyframes ringPing{ 0%,82%{ opacity:0; transform:scale(1) } 83%{ opacity:.35 } 92%{ opacity:0; transform:scale(1.35) } 100%{ opacity:0 } }
 
-    /* Accessibility: respect reduced motion */
+    /* Accessibility: reduced motion */
     @media (prefers-reduced-motion: reduce){
       .reveal{transition:none}
       .btn:hover{transform:none}
@@ -226,6 +209,21 @@
       .brand h1{font-size:1rem}
       .cta-group{gap:8px}
     }
+
+    /* Facebook outline ring with strong contrast in both themes */
+    .btn.facebook.facebook-outline{
+      --ring: 3px; background: transparent !important; border: 0; position: relative; color: var(--facebook);
+      text-shadow:none; box-shadow:none !important;
+    }
+    .btn.facebook.facebook-outline::before{
+      content:""; position:absolute; inset:0; border-radius:999px; padding:var(--ring);
+      background:linear-gradient(135deg, var(--facebook), var(--facebook2));
+      mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite:xor; mask-composite:exclude;
+      filter:drop-shadow(0 0 16px color-mix(in oklab, var(--facebook) 35%, transparent)) drop-shadow(0 0 36px color-mix(in oklab, var(--facebook2) 22%, transparent));
+      pointer-events:none;
+    }
   </style>
 </head>
 <body>
@@ -237,15 +235,10 @@
         <h1>ექთნის მომსახურება თბილისში</h1>
       </div>
       <nav class="cta-group" aria-label="სწრაფი კონტაქტი">
+        <button class="theme-toggle" id="themeBtn" type="button" aria-label="Toggle theme"><span class="icon" id="themeIcon">🌞</span><span id="themeText">Light</span></button>
         <a class="phone call-pulse" href="tel:+995591805108" aria-label="დარეკვა +995 591 80 51 08">📞 +995 591 80 51 08</a>
         <a class="btn viber" href="viber://chat?number=%2B995591805108" aria-label="Viber-ზე ჩატი">Viber</a>
-        <a class="btn facebook facebook-outline"
-        href="https://www.facebook.com/share/177azKq9nm/" target="_blank" rel="noopener nofollow">
-        <span>Facebook</span>
-      </a>
-
-
-
+        <a class="btn facebook facebook-outline" href="https://www.facebook.com/share/177azKq9nm/" target="_blank" rel="noopener nofollow"><span>Facebook</span></a>
       </nav>
     </div>
   </header>
@@ -257,19 +250,14 @@
         <div>
           <span class="tag">ბინაზე გამოძახებით, უსაფრთხო & სტერილური</span>
           <h2>პროფესიონალური ექთნის მომსახურება — სწრაფად, სწორად, პროფესიონალურად</h2>
-          <p>გადასხმა/ინფუზია, ჭრილობის დამუშავება, ნაკერების მოხსნა, ინტოქსიკაცია, ვირუსული ინფექციები და სხვა.
-             მომსახურება <strong>დღის განმავლობაში</strong>, წინასწარი შეთანხმებით.</p>
+          <p>გადასხმა/ინფუზია, ჭრილობის დამუშავება, ნაკერების მოხსნა, ინტოქსიკაცია, ვირუსული ინფექციები და სხვა. მომსახურება <strong>დღის განმავლობაში</strong>, წინასწარი შეთანხმებით.</p>
           <div class="highlights">
             <span class="tag">📍 თბილისი</span>
             <span class="tag">💉 გადასხმა/ინფუზია</span>
             <span class="tag">🩹 ჭრილობა & ნაკერები</span>
           </div>
           <div class="cta-group">
-            <a class="btn viber call-pulse"
-              href="viber://chat?number=%2B995591805108"
-              aria-label="Viber-ზე ჩატი">
-              დამიკავშირდით Viber-ზე
-            </a> 
+            <a class="btn viber call-pulse" href="viber://chat?number=%2B995591805108" aria-label="Viber-ზე ჩატი">დამიკავშირდით Viber-ზე</a>
             <a class="btn outline" href="#services">სერვისების ნახვა</a>
           </div>
         </div>
@@ -324,8 +312,6 @@
           <p>სითხეები და მედიკამენტები ინდივიდუალურად შეთანხმებული სქემით.</p>
         </article>
       </div>
-
-    
     </section>
 
     <!-- ABOUT -->
@@ -338,13 +324,12 @@
           <div class="cta-group" style="margin-top:10px">
             <a class="btn call-pulse" href="tel:+995591805108">დარეკვა</a>
             <a class="btn" style="background:#7c5cff" href="viber://chat?number=%2B995591805108">Viber</a>
-            <a class="btn facebook facebook-outline " href="https://www.facebook.com/share/177azKq9nm/" target="_blank" rel="noopener nofollow">Facebook</a>
-
+            <a class="btn facebook facebook-outline" href="https://www.facebook.com/share/177azKq9nm/" target="_blank" rel="noopener nofollow">Facebook</a>
           </div>
         </div>
         <div class="reveal">
           <picture>
-            <img class="shadow" src="image.png" alt="ექთანი — პროფესიონალური მოვლა ბინაზე" loading="lazy" style="border-radius:var(--radius);border:1px solid rgba(255,255,255,.08)" />
+            <img class="shadow" src="image.png" alt="ექთანი — პროფესიონალური მოვლა ბინაზე" loading="lazy" style="border-radius:var(--radius);border:1px solid var(--border)" />
           </picture>
         </div>
       </div>
@@ -376,7 +361,7 @@
           <div class="cta-group" style="margin-top:8px">
             <a class="btn call-pulse" href="tel:+995591805108">📞 დარეკვა</a>
             <a class="btn" style="background:#7c5cff" href="viber://chat?number=%2B995591805108">Viber</a>
-            <a class="btn facebook facebook-outline " href="https://www.facebook.com/share/177azKq9nm/" target="_blank" rel="noopener nofollow">Facebook</a>
+            <a class="btn facebook facebook-outline" href="https://www.facebook.com/share/177azKq9nm/" target="_blank" rel="noopener nofollow">Facebook</a>
           </div>
         </div>
         <div class="card reveal">
@@ -406,15 +391,8 @@
     "url": "",
     "image": "image.png",
     "telephone": "+995591805108",
-    "areaServed": {
-      "@type": "AdministrativeArea",
-      "name": "Tbilisi"
-    },
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Tbilisi",
-      "addressCountry": "GE"
-    },
+    "areaServed": {"@type": "AdministrativeArea","name": "Tbilisi"},
+    "address": {"@type": "PostalAddress","addressLocality": "Tbilisi","addressCountry": "GE"},
     "byAppointmentOnly": true
   }
   </script>
@@ -425,28 +403,50 @@
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "სერვისი რომელ უბნებშია ხელმისაწვდომი?",
-        "acceptedAnswer": {"@type": "Answer","text": "თბილისი და მის შემოგარენში. ზუსტი მისამართის მიხედვით დაგიკავშირდებით დეტალებისთვის."}
-      },
-      {
-        "@type": "Question",
-        "name": "როდის შეიძლება ვიზიტის დაჯავშნა?",
-        "acceptedAnswer": {"@type": "Answer","text": "დღის განმავლობაში, წინასწარი შეთანხმებით. სცადეთ დარეკვა ან Viber-ით შეტყობინება."}
-      },
-      {
-        "@type": "Question",
-        "name": "გადასხმა/ინფუზია რას მოიცავს?",
-        "acceptedAnswer": {"@type": "Answer","text": "ინტრავენური სითხეები/მედიკამენტები ინიშნება ინდივიდუალურად, შესაბამისი ჩვენებით. უსაფრთხოება არის პრიორიტეტი."}
-      }
+      {"@type": "Question","name": "სერვისი რომელ უბნებშია ხელმისაწვდომი?","acceptedAnswer": {"@type": "Answer","text": "თბილისი და მის შემოგარენში. ზუსტი მისამართის მიხედვით დაგიკავშირდებით დეტალებისთვის."}},
+      {"@type": "Question","name": "როდის შეიძლება ვიზიტის დაჯავშნა?","acceptedAnswer": {"@type": "Answer","text": "დღის განმავლობაში, წინასწარი შეთანხმებით. სცადეთ დარეკვა ან Viber-ით შეტყობინება."}},
+      {"@type": "Question","name": "გადასხმა/ინფუზია რას მოიცავს?","acceptedAnswer": {"@type": "Answer","text": "ინტრავენური სითხეები/მედიკამენტები ინიშნება ინდივიდუალურად, შესაბამისი ჩვენებით. უსაფრთხოება არის პრიორიტეტი."}}
     ]
   }
   </script>
 
   <script defer>
     // Year in footer
-    document.getElementById('y').textContent = new Date().getFullYear()
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Theme: load saved or use prefers-color-scheme on first visit
+    (function initTheme(){
+      const root = document.documentElement;
+      const saved = localStorage.getItem('theme');
+      if(!saved){
+        // honor prefers only on very first visit
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if(prefersDark){ root.setAttribute('data-theme','dark'); document.getElementById('metaThemeColor').setAttribute('content','#0b1221'); }
+      } else {
+        root.setAttribute('data-theme', saved);
+        document.getElementById('metaThemeColor').setAttribute('content', saved==='dark' ? '#0b1221' : '#ffffff');
+      }
+      updateToggle();
+    })();
+
+    // Toggle control
+    const btn = document.getElementById('themeBtn');
+    function updateToggle(){
+      const mode = document.documentElement.getAttribute('data-theme') || 'light';
+      const icon = document.getElementById('themeIcon');
+      const text = document.getElementById('themeText');
+      if(mode==='dark'){ icon.textContent = '🌙'; text.textContent = 'Dark'; }
+      else { icon.textContent = '🌞'; text.textContent = 'Light'; }
+    }
+    btn.addEventListener('click', ()=>{
+      const root = document.documentElement;
+      const current = root.getAttribute('data-theme') || 'light';
+      const next = current === 'light' ? 'dark' : 'light';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      document.getElementById('metaThemeColor').setAttribute('content', next==='dark' ? '#0b1221' : '#ffffff');
+      updateToggle();
+    });
 
     // Smooth reveal on scroll
     const io = new IntersectionObserver((entries)=>{
@@ -462,12 +462,12 @@
       })
     })
 
-    // Improve :focus visibility
-    const setFocusStyle = ()=>{
+    // Improve :focus visibility dynamically from CSS variables
+    (function setFocusStyle(){
       const style = document.createElement('style');
-      style.innerHTML = `:focus{outline:3px solid ${getComputedStyle(document.documentElement).getPropertyValue('--primary-2')};outline-offset:3px}`;
+      style.innerHTML = `:focus{outline:3px solid var(--primary-2);outline-offset:3px}`;
       document.head.appendChild(style);
-    }; setFocusStyle();
+    })();
 
     // Subtle mouse-tilt on the hero image (disabled for reduced-motion)
     const heroTilt = document.getElementById('heroTilt');
@@ -486,11 +486,6 @@
     }
   </script>
 
-  <noscript>
-    <style>.reveal{opacity:1;transform:none}</style>
-  </noscript>
+  <noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
 </body>
 </html>
-
-
-
