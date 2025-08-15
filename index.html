@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html lang="ka" data-theme="light">
 <head>
+  <meta name="google-site-verification" content="9VK0LlOh1F2QIy8xkgIoOndXck8iW23O4metUlfAm-Q" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>ექსპერტი ექთნის მომსახურება თბილისში — ბინაზე გამოძახებით</title>
   <meta name="description" content="პროფესიონალი ექთანი თბილისში — გადასხმა/ინფუზია, ჭრილობის დამუშავება, ნაკერების მოხსნა, ინტოქსიკაცია, ვირუსული ინფექციები, ალერგიული რეაქციები. ტელ: +995 591 80 51 08" />
-  <link rel="canonical" href="/" />
+
+  <link rel="canonical" href="https://gadasxmatbilisi.github.io/" />
+
+  <meta property="og:type" content="website" />
   <meta property="og:title" content="ექთნის მომსახურება თბილისში — ბინაზე გამოძახებით" />
   <meta property="og:description" content="სწრაფი და უსაფრთხო მომსახურება ბინაზე. დარეკეთ: +995 591 80 51 08" />
-  <meta property="og:image" content="image.png" />
-  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://gadasxmatbilisi.github.io/" />
+  <meta property="og:image" content="https://gadasxmatbilisi.github.io/image.png" />
+  <meta property="og:locale" content="ka_GE" />
+  <meta property="og:site_name" content="ექთნის მომსახურება თბილისში" />
+
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="theme-color" content="#ffffff" id="metaThemeColor" />
+
   <style>
     /* ---------------------------------------------
        THEME SYSTEM
@@ -225,6 +234,57 @@
       pointer-events:none;
     }
   </style>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-TXLPR7F27G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  gtag('js', new Date());
+
+  // GA4 basic pageview
+  gtag('config', 'G-TXLPR7F27G', {
+    page_title: document.title,
+    page_path: location.pathname + location.search
+  });
+</script>
+
+<script>
+  // Helper: send event, then navigate (small delay so GA4 receives it)
+  function trackAndGo(e, eventName, params) {
+    const url = e.currentTarget.getAttribute('href');
+    if (!url) return;
+    e.preventDefault();
+    let done = false;
+    const go = () => { if (!done) { done = true; location.href = url; } };
+    // Fallback in case callback doesn’t fire
+    const timer = setTimeout(go, 200);
+    gtag('event', eventName, Object.assign({ event_callback: () => { clearTimeout(timer); go(); } }, params));
+  }
+
+  // Phone clicks
+  document.querySelectorAll('a[href^="tel:"]').forEach(a=>{
+    a.addEventListener('click', (e)=>{
+      trackAndGo(e, 'click_call', { link_url: a.href });
+    });
+  });
+
+  // Viber clicks
+  document.querySelectorAll('a[href^="viber://"]').forEach(a=>{
+    a.addEventListener('click', (e)=>{
+      trackAndGo(e, 'click_viber', { link_url: a.href });
+    });
+  });
+
+  // Facebook clicks
+  document.querySelectorAll('a[href*="facebook.com"]').forEach(a=>{
+    a.addEventListener('click', (e)=>{
+      trackAndGo(e, 'click_facebook', { link_url: a.href });
+    });
+  });
+</script>
+
+
+
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -383,19 +443,23 @@
   </footer>
 
   <!-- Structured data: Local business (MedicalBusiness) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "MedicalBusiness",
-    "name": "ექთნის მომსახურება თბილისში",
-    "url": "",
-    "image": "image.png",
-    "telephone": "+995591805108",
-    "areaServed": {"@type": "AdministrativeArea","name": "Tbilisi"},
-    "address": {"@type": "PostalAddress","addressLocality": "Tbilisi","addressCountry": "GE"},
-    "byAppointmentOnly": true
-  }
-  </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalBusiness",
+  "name": "ექთნის მომსახურება თბილისში",
+  "url": "https://gadasxmatbilisi.github.io/",
+  "image": "https://gadasxmatbilisi.github.io/image.png",
+  "telephone": "+995591805108",
+  "areaServed": { "@type": "AdministrativeArea", "name": "Tbilisi" },
+  "address": { "@type": "PostalAddress", "addressLocality": "Tbilisi", "addressCountry": "GE" },
+  "byAppointmentOnly": true,
+  "medicalSpecialty": "Nursing",
+  "knowsLanguage": ["ka","en","ru"],
+  "sameAs": ["https://www.facebook.com/share/177azKq9nm/"]
+}
+</script>
+
 
   <!-- Structured data: FAQ -->
   <script type="application/ld+json">
@@ -451,13 +515,7 @@
     }, {threshold:.14, rootMargin:'0px 0px -10% 0px'})
     document.querySelectorAll('.reveal').forEach(el=> io.observe(el))
 
-    // Phone click tracking (simple)
-    document.querySelectorAll('a[href^="tel:"]').forEach(a=>{
-      a.addEventListener('click',()=>{
-        if(window.dataLayer){ window.dataLayer.push({event:'call_click', phone:a.getAttribute('href')}) }
-        else { console.log('call_click', a.getAttribute('href')) }
-      })
-    })
+
 
     // Improve :focus visibility dynamically from CSS variables
     (function setFocusStyle(){
@@ -484,5 +542,36 @@
   </script>
 
   <noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
+
+
+
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    function trackAndGo(e, eventName, params) {
+      const url = e.currentTarget.getAttribute('href');
+      if (!url) return;
+      e.preventDefault();
+      let done = false;
+      const go = () => { if (!done) { done = true; location.href = url; } };
+      const timer = setTimeout(go, 200); // fallback
+      gtag('event', eventName, Object.assign({ event_callback: () => { clearTimeout(timer); go(); } }, params));
+    }
+
+    // Phone
+    document.querySelectorAll('a[href^="tel:"]').forEach(a=>{
+      a.addEventListener('click', (e)=> trackAndGo(e, 'click_call', { link_url: a.href }) );
+    });
+    // Viber
+    document.querySelectorAll('a[href^="viber://"]').forEach(a=>{
+      a.addEventListener('click', (e)=> trackAndGo(e, 'click_viber', { link_url: a.href }) );
+    });
+    // Facebook
+    document.querySelectorAll('a[href*="facebook.com"]').forEach(a=>{
+      a.addEventListener('click', (e)=> trackAndGo(e, 'click_facebook', { link_url: a.href }) );
+    });
+  });
+</script>
+
 </body>
 </html>
