@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gadasxmatbilisi.github.io/sitemap.xml
