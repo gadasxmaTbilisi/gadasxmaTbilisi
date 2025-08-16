@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ka" data-theme="light">
 <head>
@@ -132,6 +133,8 @@
     .cta-group{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
     .phone{background:white;color:#0a2150;padding:10px 16px;border-radius:999px;font-weight:800;text-decoration:none}
     .viber{background:#7c5cff;color:#fff}
+    .whatsapp{ background:#25D366; color:#fff }
+
 
     /* Theme toggle */
     .theme-toggle{
@@ -300,7 +303,9 @@
         <button class="theme-toggle" id="themeBtn" type="button" aria-label="Toggle theme"><span class="icon" id="themeIcon">🌞</span><span id="themeText">Light</span></button>
         <a class="phone call-pulse" href="tel:+995591805108" aria-label="დარეკვა +995 591 80 51 08">📞 +995 591 80 51 08</a>
         <a class="btn viber" href="viber://chat?number=%2B995591805108" aria-label="Viber-ზე ჩატი">Viber</a>
+        <a class="btn whatsapp" href="whatsapp://send?phone=995591805108" aria-label="WhatsApp-ით ჩატი">WhatsApp</a>
         <a class="btn facebook facebook-outline" href="https://www.facebook.com/share/177azKq9nm/" target="_blank" rel="noopener nofollow"><span>Facebook</span></a>
+        
       </nav>
     </div>
   </header>
@@ -386,6 +391,7 @@
           <div class="cta-group" style="margin-top:10px">
             <a class="btn call-pulse" href="tel:+995591805108">დარეკვა</a>
             <a class="btn" style="background:#7c5cff" href="viber://chat?number=%2B995591805108">Viber</a>
+            <a class="btn whatsapp" href="whatsapp://send?phone=995591805108" aria-label="WhatsApp-ით ჩატი">WhatsApp</a>
             <a class="btn facebook facebook-outline" href="https://www.facebook.com/share/177azKq9nm/" target="_blank" rel="noopener nofollow">Facebook</a>
           </div>
         </div>
@@ -423,6 +429,7 @@
           <div class="cta-group" style="margin-top:8px">
             <a class="btn call-pulse" href="tel:+995591805108">📞 დარეკვა</a>
             <a class="btn" style="background:#7c5cff" href="viber://chat?number=%2B995591805108">Viber</a>
+            <a class="btn whatsapp" href="whatsapp://send?phone=995591805108" aria-label="WhatsApp-ით ჩატი">WhatsApp</a>
             <a class="btn facebook facebook-outline" href="https://www.facebook.com/share/177azKq9nm/" target="_blank" rel="noopener nofollow">Facebook</a>
           </div>
         </div>
@@ -458,7 +465,14 @@
   "byAppointmentOnly": true,
   "medicalSpecialty": "Nursing",
   "knowsLanguage": ["ka","en","ru"],
-  "sameAs": ["https://www.facebook.com/share/177azKq9nm/"]
+  "sameAs": ["https://www.facebook.com/share/177azKq9nm/"],
+
+  "availableChannel": {
+  "@type": "ServiceChannel",
+  "name": "WhatsApp",
+  "serviceUrl": "https://wa.me/995591805108"
+}
+
 }
 </script>
 
@@ -548,7 +562,7 @@
 
 
 
-  <script>
+<script>
   document.addEventListener('DOMContentLoaded', function () {
     function trackAndGo(e, eventName, params) {
       const url = e.currentTarget.getAttribute('href');
@@ -556,7 +570,7 @@
       e.preventDefault();
       let done = false;
       const go = () => { if (!done) { done = true; location.href = url; } };
-      const timer = setTimeout(go, 200); // fallback
+      const timer = setTimeout(go, 200);
       gtag('event', eventName, Object.assign({ event_callback: () => { clearTimeout(timer); go(); } }, params));
     }
 
@@ -568,12 +582,18 @@
     document.querySelectorAll('a[href^="viber://"]').forEach(a=>{
       a.addEventListener('click', (e)=> trackAndGo(e, 'click_viber', { link_url: a.href }) );
     });
+    // WhatsApp (wa.me, api.whatsapp.com, and whatsapp://)
+    document.querySelectorAll('a[href^="whatsapp://"]').forEach(a=>{
+    a.addEventListener('click', () => {
+      gtag('event', 'click_whatsapp', { link_url: a.href });
+    });
     // Facebook
     document.querySelectorAll('a[href*="facebook.com"]').forEach(a=>{
       a.addEventListener('click', (e)=> trackAndGo(e, 'click_facebook', { link_url: a.href }) );
     });
   });
 </script>
+
 
 </body>
 </html>
