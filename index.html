@@ -1,25 +1,24 @@
-
 <!DOCTYPE html>
 <html lang="ka" data-theme="light">
 <head>
   <meta name="google-site-verification" content="9VK0LlOh1F2QIy8xkgIoOndXck8iW23O4metUlfAm-Q" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Marina Nurse Home Care — ბინაზე ექთნის მომსახურება თბილისში</title>
-  <meta name="description" content="Marina Nurse Home Care — სერტიფიცირებული ექთანი თბილისში. ბინაზე ვიზიტები წინასწარი შეთანხმებით: გადასხმა/ინფუზია, ჭრილობის დამუშავება, ნაკერების მოხსნა და სხვა.">
 
+  <title>ექთანი ბინაზე — მარინა — ბინაზე ექთნის მომსახურება თბილისში</title>
+  <meta name="description" content="„ექთანი ბინაზე — მარინა“ — სერტიფიცირებული ექთანი თბილისში. ბინაზე ვიზიტები წინასწარი შეთანხმებით: გადასხმა/ინფუზია, ჭრილობის დამუშავება, ნაკერების მოხსნა და სხვა." />
 
   <link rel="canonical" href="https://gadasxmatbilisi.github.io/" />
   <link rel="icon" href="https://gadasxmatbilisi.github.io/favicon.ico" type="image/x-icon">
   <link rel="icon" href="https://gadasxmatbilisi.github.io/favicon.png" type="image/png">
 
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Marina Nurse Home Care — ბინაზე ექთნის მომსახურება თბილისში" />
+  <meta property="og:title" content="ექთანი ბინაზე — მარინა — ბინაზე ექთნის მომსახურება თბილისში" />
   <meta property="og:description" content="სერტიფიცირებული ექთანი თბილისში. ბინაზე ვიზიტები წინასწარი შეთანხმებით." />
   <meta property="og:url" content="https://gadasxmatbilisi.github.io/" />
   <meta property="og:image" content="https://gadasxmatbilisi.github.io/image.png" />
   <meta property="og:locale" content="ka_GE" />
-  <meta property="og:site_name" content="Marina Nurse Home Care" />
+  <meta property="og:site_name" content="ექთანი ბინაზე — მარინა" />
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="theme-color" content="#ffffff" id="metaThemeColor" />
@@ -28,7 +27,7 @@
     /* ---------------------------------------------
        THEME SYSTEM
        - Light is default via [data-theme="light"] on <html>
-       - Dark overrides inside [data-theme="dark"]
+       - Dark overrides inside [data-theme="dark]
        - Respects prefers-color-scheme on first visit
     ----------------------------------------------*/
 
@@ -240,57 +239,63 @@
       pointer-events:none;
     }
   </style>
+
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-TXLPR7F27G"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){ dataLayer.push(arguments); }
-  gtag('js', new Date());
-
-  // GA4 basic pageview
-  gtag('config', 'G-TXLPR7F27G', {
-    page_title: document.title,
-    page_path: location.pathname + location.search
-  });
-</script>
-
-<script>
-  // Helper: send event, then navigate (small delay so GA4 receives it)
-  function trackAndGo(e, eventName, params) {
-    const url = e.currentTarget.getAttribute('href');
-    if (!url) return;
-    e.preventDefault();
-    let done = false;
-    const go = () => { if (!done) { done = true; location.href = url; } };
-    // Fallback in case callback doesn’t fire
-    const timer = setTimeout(go, 200);
-    gtag('event', eventName, Object.assign({ event_callback: () => { clearTimeout(timer); go(); } }, params));
-  }
-
-  // Phone clicks
-  document.querySelectorAll('a[href^="tel:"]').forEach(a=>{
-    a.addEventListener('click', (e)=>{
-      trackAndGo(e, 'click_call', { link_url: a.href });
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TXLPR7F27G"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    // GA4 basic pageview
+    gtag('config', 'G-TXLPR7F27G', {
+      page_title: document.title,
+      page_path: location.pathname + location.search
     });
-  });
+  </script>
 
-  // Viber clicks
-  document.querySelectorAll('a[href^="viber://"]').forEach(a=>{
-    a.addEventListener('click', (e)=>{
-      trackAndGo(e, 'click_viber', { link_url: a.href });
+  <script>
+    // Helper: send event, then navigate (small delay so GA4 receives it)
+    function trackAndGo(e, eventName, params) {
+      const url = e.currentTarget.getAttribute('href');
+      if (!url) return;
+      e.preventDefault();
+      let done = false;
+      const go = () => { if (!done) { done = true; location.href = url; } };
+      // Fallback in case callback doesn’t fire
+      const timer = setTimeout(go, 200);
+      gtag('event', eventName, Object.assign({ event_callback: () => { clearTimeout(timer); go(); } }, params));
+    }
+
+    // Phone clicks
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('a[href^="tel:"]').forEach(a=>{
+        a.addEventListener('click', (e)=>{
+          trackAndGo(e, 'click_call', { link_url: a.href });
+        });
+      });
+
+      // Viber clicks
+      document.querySelectorAll('a[href^="viber://"]').forEach(a=>{
+        a.addEventListener('click', (e)=>{
+          trackAndGo(e, 'click_viber', { link_url: a.href });
+        });
+      });
+
+      // WhatsApp clicks
+      document.querySelectorAll('a[href^="whatsapp://"]').forEach(a=>{
+        a.addEventListener('click', (e)=>{
+          trackAndGo(e, 'click_whatsapp', { link_url: a.href });
+        });
+      });
+
+      // Facebook clicks
+      document.querySelectorAll('a[href*="facebook.com"]').forEach(a=>{
+        a.addEventListener('click', (e)=>{
+          trackAndGo(e, 'click_facebook', { link_url: a.href });
+        });
+      });
     });
-  });
-
-  // Facebook clicks
-  document.querySelectorAll('a[href*="facebook.com"]').forEach(a=>{
-    a.addEventListener('click', (e)=>{
-      trackAndGo(e, 'click_facebook', { link_url: a.href });
-    });
-  });
-</script>
-
-
-
+  </script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -298,7 +303,7 @@
     <div class="container bar">
       <div class="brand" aria-label="ბრენდი">
         <div class="brand-logo" aria-hidden="true">🩺</div>
-        <h1>Marina Nurse Home Care</h1>
+        <h1>ექთანი ბინაზე — მარინა</h1>
       </div>
       <nav class="cta-group" aria-label="სწრაფი კონტაქტი">
         <button class="theme-toggle" id="themeBtn" type="button" aria-label="Toggle theme"><span class="icon" id="themeIcon">🌞</span><span id="themeText">Light</span></button>
@@ -306,7 +311,6 @@
         <a class="btn viber" href="viber://chat?number=%2B995591805108" aria-label="Viber-ზე ჩატი">Viber</a>
         <a class="btn whatsapp" href="whatsapp://send?phone=995591805108" aria-label="WhatsApp-ით ჩატი">WhatsApp</a>
         <a class="btn facebook facebook-outline" href="https://www.facebook.com/share/177azKq9nm/" target="_blank" rel="noopener nofollow"><span>Facebook</span></a>
-        
       </nav>
     </div>
   </header>
@@ -392,7 +396,6 @@
           <p class="muted">მხოლოდ ბინაზე ვიზიტები (ოფისი არ გვაქვს). მომსახურების ზონა: თბილისი. ვიზიტი მხოლოდ წინასწარი შეთანხმებით.</p>
           <p class="muted">Home-visit only (no walk-ins). Service area: Tbilisi. Visits by appointment.</p>
           <div class="cta-group" style="margin-top:10px">
-
             <a class="btn call-pulse" href="tel:+995591805108">დარეკვა</a>
             <a class="btn" style="background:#7c5cff" href="viber://chat?number=%2B995591805108">Viber</a>
             <a class="btn whatsapp" href="whatsapp://send?phone=995591805108" aria-label="WhatsApp-ით ჩატი">WhatsApp</a>
@@ -451,30 +454,27 @@
 
   <footer>
     <div class="container">
-      <small>© <span id="y"></span> Marina Nurse Home Care. ყველა უფლება დაცულია.</small>
+      <small>© <span id="y"></span> ექთანი ბინაზე — მარინა. ყველა უფლება დაცულია.</small>
     </div>
   </footer>
 
   <!-- Structured data: Local business (MedicalBusiness) -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "MedicalBusiness",
-  "name": "Marina Nurse Home Care",
-  "alternateName": "ექთნის მომსახურება თბილისში",
-  "url": "https://gadasxmatbilisi.github.io/",
-  "image": "https://gadasxmatbilisi.github.io/image.png",
-  "telephone": "+995591805108",
-  "areaServed": { "@type": "AdministrativeArea", "name": "Tbilisi" },
-  "address": { "@type": "PostalAddress", "addressLocality": "Tbilisi", "addressCountry": "GE" },
-  "byAppointmentOnly": true,
-  "medicalSpecialty": "Nursing",
-  "knowsLanguage": ["ka","en","ru"]
-
-}
-</script>
-
-
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalBusiness",
+    "name": "ექთანი ბინაზე — მარინა",
+    "alternateName": "Marina Nurse Home Care",
+    "url": "https://gadasxmatbilisi.github.io/",
+    "image": "https://gadasxmatbilisi.github.io/image.png",
+    "telephone": "+995591805108",
+    "areaServed": { "@type": "AdministrativeArea", "name": "Tbilisi" },
+    "address": { "@type": "PostalAddress", "addressLocality": "Tbilisi", "addressCountry": "GE" },
+    "byAppointmentOnly": true,
+    "medicalSpecialty": "Nursing",
+    "knowsLanguage": ["ka","en","ru"]
+  }
+  </script>
 
   <!-- Structured data: FAQ -->
   <script type="application/ld+json">
@@ -530,8 +530,6 @@
     }, {threshold:.14, rootMargin:'0px 0px -10% 0px'})
     document.querySelectorAll('.reveal').forEach(el=> io.observe(el))
 
-
-
     // Improve :focus visibility dynamically from CSS variables
     (function setFocusStyle(){
       const style = document.createElement('style');
@@ -557,40 +555,5 @@
   </script>
 
   <noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
-
-
-
-
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    function trackAndGo(e, eventName, params) {
-      const url = e.currentTarget.getAttribute('href');
-      if (!url) return;
-      e.preventDefault();
-      let done = false;
-      const go = () => { if (!done) { done = true; location.href = url; } };
-      const timer = setTimeout(go, 200);
-      gtag('event', eventName, Object.assign({ event_callback: () => { clearTimeout(timer); go(); } }, params));
-    }
-
-    document.querySelectorAll('a[href^="tel:"]').forEach(a=>{
-      a.addEventListener('click', (e)=> trackAndGo(e, 'click_call', { link_url: a.href }) );
-    });
-
-    document.querySelectorAll('a[href^="viber://"]').forEach(a=>{
-      a.addEventListener('click', (e)=> trackAndGo(e, 'click_viber', { link_url: a.href }) );
-    });
-
-    document.querySelectorAll('a[href^="whatsapp://"]').forEach(a=>{
-      a.addEventListener('click', ()=> gtag('event', 'click_whatsapp', { link_url: a.href }) );
-    });
-
-    document.querySelectorAll('a[href*="facebook.com"]').forEach(a=>{
-      a.addEventListener('click', (e)=> trackAndGo(e, 'click_facebook', { link_url: a.href }) );
-    });
-  });
-</script>
-
-
 </body>
 </html>
